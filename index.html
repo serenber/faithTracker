@@ -15,21 +15,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/2.0.4/dexie.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
 
-    <style>
-        :root {
-            --mdc-theme-primary: #2935a5;
-        }
-        .template {
-            display:none;
-        }
-        
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 
 </head>
 
@@ -47,7 +32,7 @@
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">Basic</i>
                     <span class="mdc-list-item__text">Basic</span>
                 </a>
-                
+
             </nav>
         </div>
     </aside>
@@ -68,22 +53,22 @@
             </section>
         </div>
     </header>
-    
-<!-- hack solution for the initial load page -->
+
+    <!-- hack solution for the initial load page -->
     <div class="mdc-top-app-bar--fixed-adjust content" id="home">
         <h1 style="font-weight:bold">Welcome!</h1>
         <p style="color:gray">
             Testing
         </p>
     </div>
-    
+
     <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content"></div>
-    
-<!-- The Basic tracker that Stephen asked for -->
+
+    <!-- The Basic tracker that Stephen asked for -->
     <div class="mdc-top-app-bar--fixed-adjust content" id="basic" style="display: none">
         The basic.html should go here
     </div>
-    
+
     <script src="script.js"></script>
 
     <script>
@@ -100,13 +85,10 @@
          // close drawer on selection
         $("nav.mdc-list a.mdc-list-item").on("click", function(e) {
             $(".content").hide();
-           console.log($(this))
-           let file = "page_content/" + $(this).attr("href").replace("#","") + ".html";
-           $("#content").load(file);
-           drawer.open = false;
-            
-            
-            
+            console.log($(this))
+            let file = "page_content/" + $(this).attr("href").replace("#", "") + ".html";
+            $("#content").load(file);
+            drawer.open = false;
         });
     </script>
 
