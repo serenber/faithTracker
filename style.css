@@ -1,5 +1,8 @@
 :root {
-    --mdc-theme-primary: #2935a5;
+    /* the important makes sure that this color is used.
+     * https://www.w3docs.com/snippets/css/how-to-override-css-styles.html
+    */
+    --mdc-theme-primary: #2935a5 !important;
 }
 .template {
     display:none;
