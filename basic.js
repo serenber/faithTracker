@@ -1,4 +1,5 @@
-//Trying to find a way to sinplify the code in basic.html
+//There's definitely a simplier/cleaner solution than this, but this'll do for now
+
 let rowNames = ["Devotion to God", "Personal Health", "Family", "Stewardship", "Work", "Volunteering", "Personal Leisure"];
 
 var i;
