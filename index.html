@@ -14,9 +14,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/2.0.4/dexie.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
-    
-    <link rel = “icon” href = ”favicon.ico” type = “image/x-icon” />
 
+    <link rel=“ icon” href=” favicon.ico” type=“ image/x-icon” />
+
+    <script src="script.js"></script>
+    <script>
+        $(function() {
+            $("#home").load("home.html");
+            console.log("home loaded")
+        });
+    </script>
 </head>
 
 <body>
@@ -54,11 +61,7 @@
         </div>
     </header>
 
-    <!-- hack solution for the initial load page -->
     <div class="mdc-top-app-bar--fixed-adjust content" id="home">
-        <h1 style="font-weight:bold">Welcome!</h1>
-        <p style="color:gray">
-        </p>
     </div>
 
     <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content"></div>
