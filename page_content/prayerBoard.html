@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .pretty {
+            margin: 10px 10px 10px 10px;
+        }
+        input[type="radio"] {
+            margin: 0 10px 0 10px;
+        }
+        #template{
+            display:none;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/2.0.4/dexie.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+</head>
+
+<body>
+    <div class="mdc-top-app-bar--fixed-adjust content" id="prayerBoard">
+        <h1 style="font-weight:bold">Prayer Board</h1>
+        <p>Enter the date and a quick note about what you want to remember to pray about :)</p>
+        <p style="color:gray">
+            <input type="text" id="date" placeholder="Enter the date (mm/dd/yyyy)">
+            <input type="text" id="prayerNote" placeholder="Enter note">
+            <button id="btnSave">Save</button>
+            <button id="btnShow">Show</button>
+        </p>
+        
+        <!-- The table element -->
+        <div class="mdc-data-table">
+            <table class="mdc-data-table__table" aria-label="Prayer Board">
+                <thead>
+                    <tr class="mdc-data-table__header-row">
+                        <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric" role="columnheader" scope="col">Date</th>
+                        <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Note</th>
+                    </tr>
+                </thead>
+                <tbody id="prayerList" class="mdc-data-table__content">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="page_scripts/prayerBoard.js"></script>
+
+    <script>
+        
+         //save the prayer note
+        $("#btnSave").on("click", function() {
+            var date = $("#date").val()
+            var note = $("#prayerNote").val()
+            db.prayers.add({
+                date: date,
+                prayer: note
+            }).then(function() {
+                alert("Prayer added!")
+            });
+        });
+        //show all prayers in the DB
+        $("#btnShow").on("click", function() {
+            $("#prayerList").empty()
+            db.prayers.each(prayer => showPrayer(prayer));
+        });
+        
+        function showPrayer(prayer) {
+            var tr = $("<tr>");
+            tr.addClass("mdc-data-table__row");
+            var td2 = $("<td>");
+            td2.addClass("mdc-data-table__cell mdc-data-table__cell--numeric");
+            td2.text(prayer.date);
+            tr.append(td2);
+            var td1 = $("<td>");
+            td1.addClass("mdc-data-table__cell");
+            td1.text(prayer.prayer);
+            tr.append(td1);
+            $("#prayerList").append(tr);
+        }
+    </script>
+</body>
+
+</html>

@@ -17,7 +17,7 @@
 
     <link rel='icon' href='favicon.ico' type='image/x-icon' />
 
-    <script src="script.js"></script>
+    <script src="page_scripts/script.js"></script>
     <script>
         $(function() {
             $("#home").load("page_content/home.html");
@@ -39,6 +39,11 @@
                 <a class="mdc-list-item mdc-list-item--activated" href="#basic" aria-current="page">
                     <i class="material-icons mdc-list-item__graphic" aria-hidden="true">Basic</i>
                     <span class="mdc-list-item__text">Basic</span>
+                </a>
+                
+                <a class="mdc-list-item mdc-list-item--activated" href="#prayerBoard" aria-current="page">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">prayerBoard</i>
+                    <span class="mdc-list-item__text">Prayer Board</span>
                 </a>
 
             </nav>
@@ -66,7 +71,7 @@
 
     <div class="mdc-drawer-app-content mdc-top-app-bar--fixed-adjust" id="content"></div>
 
-    <script src="script.js"></script>
+    <script src="page_scripts/script.js"></script>
 
     <script>
         window.mdc.autoInit();
@@ -86,6 +91,13 @@
             let file = "page_content/" + $(this).attr("href").replace("#", "") + ".html";
             $("#content").load(file);
             drawer.open = false;
+        });
+        
+        //datebase for saving information
+        const db = new Dexie('MyDatabase');
+        db.version(1).stores({
+            prayers: '++id, date, prayer',
+            history: '++id'
         });
     </script>
 
