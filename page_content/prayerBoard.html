@@ -50,22 +50,26 @@
 
     <script>
         
-         //save the prayer note
+         //response to save button click
         $("#btnSave").on("click", function() {
             var date = $("#date").val()
             var note = $("#prayerNote").val()
-            db.prayers.add({
-                date: date,
-                prayer: note
-            }).then(function() {
-                alert("Prayer added!")
-            });
+            
+            //check that the given date is valid
+            if(dateCheck(date)){
+                savePrayer(date, note);
+            }
+            else{
+                alert("Prayer not added. Please enter a valid date");
+            }
+            
         });
         //show all prayers in the DB
         $("#btnShow").on("click", function() {
             $("#prayerList").empty()
             db.prayers.each(prayer => showPrayer(prayer));
         });
+        
     </script>
 </body>
 
