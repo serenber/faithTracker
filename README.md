@@ -1,0 +1,2 @@
+# faithTracker
+permalink: /index.html
