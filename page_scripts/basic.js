@@ -1,4 +1,18 @@
-//There's definitely a simplier/cleaner solution than this, but this'll do for now
+//a class that creates the html for a stylized radio button
+class Button {
+  constructor(name, state) {
+    var td2 = $("<td>");
+    var d1 = $("<div class='pretty p-default p-curve'>");
+    var in1 = $("<input type='radio' name='color" + name + "' />");
+    d1.append(in1);
+    var d2 = $("<div class='state p-" + state + "-o'>");
+    var la1 = $("<label></label>");
+    d2.append(la1);
+    d1.append(d2);
+    td2.append(d1);
+    this.button = td2
+  }
+}
 
 let rowNames = ["Devotion to God", "Personal Health", "Family", "Stewardship", "Work", "Volunteering", "Personal Leisure"];
 
@@ -15,40 +29,15 @@ for(i = 0; i < rowNames.length; i++) {
     td1.text(rowNames[i]);
     tr.append(td1);
     
-    //green button
-    var td2 = $("<td>");
-    var d1 = $("<div class='pretty p-default p-curve'>");
-    var in1 = $("<input type='radio' name='color" + name + "' />");
-    d1.append(in1);
-    var d2 = $("<div class='state p-success-o'>");
-    var la1 = $("<label></label>");
-    d2.append(la1);
-    d1.append(d2);
-    td2.append(d1);
-    tr.append(td2);
+    //the buttons in the row
+    var greenButton = new Button(name, 'success');
+    tr.append(greenButton.button);
     
-    //yellow button
-    var td3 = $("<td>");
-    d1 = $("<div class='pretty p-default p-curve'>");
-    in1 = $("<input type='radio' name='color" + name + "' />");
-    d1.append(in1);
-    d2 = $("<div class='state p-warning-o'>");
-    la1 = $("<label></label>");
-    d2.append(la1);
-    d1.append(d2);
-    td3.append(d1);
-    tr.append(td3);
+    var yellowButton = new Button(name, 'warning');
+    tr.append(yellowButton.button);
     
-    //red button
-    var td4 = $("<td>");
-    d1 = $("<div class='pretty p-default p-curve'>");
-    in1 = $("<input type='radio' name='color" + name + "' />");
-    d1.append(in1);
-    d2 = $("<div class='state p-danger-o'>");
-    la1 = $("<label></label>");
-    d2.append(la1);
-    d1.append(d2);
-    td4.append(d1);
-    tr.append(td4);
+    var redButton = new Button(name, 'danger');
+    tr.append(redButton.button);
+    
     $("#table").append(tr);
 }
